@@ -13,8 +13,11 @@ gradle bootRun
 ```
 
 Afterwards the following resources are available
+
 * Your RESTful webservice is accessible at [http://localhost:8080/greeting]()
+
 * The Swagger UI is accessible at [http://localhost:8080/swagger-ui.html]()
+
 * The Swagger v2 definition is accessible at [http://localhost:8080/v2/api-docs]()
 
 ----
