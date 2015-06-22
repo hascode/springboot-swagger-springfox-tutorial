@@ -14,7 +14,7 @@ public class CurrentDateController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/currentdate/{pattern}")
-	public FormattedDate greeting(@PathVariable final String pattern) {
+	public FormattedDate formatCurrentDate(@PathVariable final String pattern) {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern(pattern);
 
 		return new FormattedDate(counter.incrementAndGet(), pattern, fmt.format(LocalDateTime.now()));
