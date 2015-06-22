@@ -14,7 +14,7 @@ gradle bootRun
 
 Afterwards the following resources are available
 
-* Your RESTful webservice is accessible at [http://localhost:8080/greeting]()
+* Your RESTful webservice is accessible at [http://localhost:8080/currentdate/yyyy-MM-dd]()
 
 * The Swagger UI is accessible at [http://localhost:8080/swagger-ui.html]()
 
@@ -28,3 +28,4 @@ Afterwards the following resources are available
    [Spring Boot]:http://projects.spring.io/spring-boot/
    [Springfox]:https://github.com/springfox/springfox
    [my blog]:http://www.hascode.com/
+~                                          

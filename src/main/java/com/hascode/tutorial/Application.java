@@ -34,7 +34,7 @@ import com.fasterxml.classmate.TypeResolver;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan(basePackageClasses = { GreetingController.class })
+@ComponentScan(basePackageClasses = { CurrentDateController.class })
 public class Application {
 
 	public static void main(final String[] args) {
