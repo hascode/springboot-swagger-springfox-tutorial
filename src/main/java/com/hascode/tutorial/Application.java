@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import com.fasterxml.classmate.TypeResolver;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
@@ -30,8 +32,6 @@ import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import com.fasterxml.classmate.TypeResolver;
-
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan(basePackageClasses = { CurrentDateController.class })
@@ -43,11 +43,17 @@ public class Application {
 
 	@Bean
 	public Docket petApi() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build().pathMapping("/")
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any()).build().pathMapping("/")
 				.directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class)
-				.alternateTypeRules(newRule(typeResolver.resolve(DeferredResult.class, typeResolver.resolve(ResponseEntity.class, WildcardType.class)), typeResolver.resolve(WildcardType.class)))
+				.alternateTypeRules(newRule(
+						typeResolver.resolve(DeferredResult.class,
+								typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
+						typeResolver.resolve(WildcardType.class)))
 				.useDefaultResponseMessages(false)
-				.globalResponseMessage(RequestMethod.GET, newArrayList(new ResponseMessageBuilder().code(500).message("500 message").responseModel(new ModelRef("Error")).build()))
+				.globalResponseMessage(RequestMethod.GET,
+						newArrayList(new ResponseMessageBuilder().code(500).message("500 message")
+								.responseModel(new ModelRef("Error")).build()))
 				.securitySchemes(newArrayList(apiKey())).securityContexts(newArrayList(securityContext()));
 	}
 
@@ -59,7 +65,8 @@ public class Application {
 	}
 
 	private SecurityContext securityContext() {
-		return SecurityContext.builder().securityReferences(defaultAuth()).forPaths(PathSelectors.regex("/anyPath.*")).build();
+		return SecurityContext.builder().securityReferences(defaultAuth()).forPaths(PathSelectors.regex("/anyPath.*"))
+				.build();
 	}
 
 	List<SecurityReference> defaultAuth() {

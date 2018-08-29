@@ -1,4 +1,4 @@
-# Spring Boot, Springfox, Swagger Integration Tutorial
+ # Spring Boot, Springfox, Swagger Integration Tutorial
 
 A demonstration how to integrate [Swagger] into a [Spring Boot] RESTful webservice using [Springfox].
 
