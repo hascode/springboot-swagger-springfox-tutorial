@@ -12,14 +12,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = Application.class)
-public class RestApiSchemaIT {
+public class RestApiSchemaIntegrationTest {
 
   @LocalServerPort
   int port;
 
   @Test
   public void validateThatImplementationMatchesDocumentationSpecification() {
-    String apiContract = RestApiSchemaIT.class.getResource("/swagger-contract.yaml").getPath();
+    String apiContract = RestApiSchemaIntegrationTest.class.getResource("/swagger-contract.yaml").getPath();
     System.out.println(apiContract);
     String swaggerSchemaUrl = String.format("http://localhost:%d/v2/api-docs", port);
     SwaggerAssertions.assertThat(swaggerSchemaUrl)
